@@ -1,27 +1,30 @@
-import "./styles/main.css";
-import React from "react";
+// import React, { useEffect } from "react";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   Redirect,
 } from "react-router-dom";
-// import { useStateValue } from "store";
-import Home from "./pages/Home";
+import { ThemeProvider } from "styled-components";
+import Home from "pages/Home";
+import GlobalStyle from "theme/globalStyles";
+import theme from "theme";
 function App() {
   // const [{ token, role }] = useStateValue();
 
   return (
-    <Router>
-      <Switch>
-        <Route path="/" exact>
-          <Home />
-        </Route>
+    <ThemeProvider theme={theme}>
+      <GlobalStyle />
+      <Router>
+        <Switch>
+          <Route path="/" exact>
+            <Home />
+          </Route>
 
-        <Route exact path="/" component={Home} />
-        <Redirect to="/" />
-      </Switch>
-    </Router>
+          <Redirect to="/" />
+        </Switch>
+      </Router>
+    </ThemeProvider>
   );
 }
 
