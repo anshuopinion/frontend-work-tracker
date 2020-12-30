@@ -79,15 +79,14 @@ const defaultTheme: DefaultTheme = {
     xl7: "5rem",
   },
   device: {
-    mobileS: `(max-width: ${size.mobileS})`,
-    mobileM: `(max-width: ${size.mobileM})`,
-    mobileL: `(max-width: ${size.mobileL})`,
-    tablet: `(max-width: ${size.tablet})`,
-    laptop: `(max-width: ${size.laptop})`,
-    laptopL: `(max-width: ${size.laptopL})`,
-    desktop: `(max-width: ${size.desktop})`,
+    mobileS: `@media (max-width: ${size.mobileS})`,
+    mobileM: `@media (max-width: ${size.mobileM})`,
+    mobileL: `@media (max-width: ${size.mobileL})`,
+    tablet: ` @media (max-width: ${size.tablet})`,
+    laptop: ` @media (max-width: ${size.laptop})`,
+    laptopL: `@media (max-width: ${size.laptopL})`,
+    desktop: `@media (max-width: ${size.desktop})`,
   },
 };
 
 export default defaultTheme;
-
