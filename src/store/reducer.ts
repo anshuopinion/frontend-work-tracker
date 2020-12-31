@@ -1,18 +1,18 @@
-export enum roleType {
-  student = "student",
-  teacher = "teacher",
-  admin = "admin",
-}
+// export enum roleType {
+//   student = "student",
+//   teacher = "teacher",
+//   admin = "admin",
+// }
 export interface IState {
   userId: string | null;
   token: string | null;
-  role: roleType | null;
+  // role: roleType | null;
 }
 
 export const initialState: IState = {
   userId: null,
   token: null,
-  role: null,
+  // role: null,
 };
 
 export const actionTypes = {
@@ -21,8 +21,8 @@ export const actionTypes = {
   SET_USER_ID: "SET_USER_ID",
   SET_TOKEN: "SET_TOKEN",
   SET_ROLE: "SET_ROLE",
-  SET_LOGIN: "SET_LOGIN",
-  SET_LOGOUT: "SET_LOGOUT",
+  // SET_LOGIN: "SET_LOGIN",
+  // SET_LOGOUT: "SET_LOGOUT",
 };
 
 const reducer = (state: IState, action: any) => {
