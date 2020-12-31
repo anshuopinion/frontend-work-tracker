@@ -3,37 +3,54 @@ import React from "react";
 import { Form, Field } from "formik";
 import { Button } from "element";
 import * as yup from "yup";
+import ErrorModal from "components/ui/ErrorModal";
+import Spinner from "components/ui/Spinner";
+import { useAuth } from "hooks/auth-hooks";
+import { useHistory } from "react-router-dom";
+import { useHttpClient } from "hooks/http-hooks";
 const Signup: React.FC = () => {
-  const validationSchema = yup.object().shape({
-    name: yup.string().min(4).required(),
-    email: yup.string().email().required(),
-    password: yup.string().min(6, "password is too short").required(),
-  });
-  return (
+  const { sendRequest, loading, error, clearError } = useHttpClient();
+  const { login } = useAuth();
+  const history = useHistory();
+  return loading ? (
+    <Spinner />
+  ) : (
     <>
-      <h1>Signup</h1>
+      <ErrorModal error={error} onClose={clearError}></ErrorModal>
+      <h1>SignUp</h1>
       <br />
       <Formik
-        initialValues={{ email: "", password: "" }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => {
-          console.log(values);
+        initialValues={{ name: "", email: "", password: "" }}
+        onSubmit={async (values) => {
+          const signupData = {
+            name: values.name,
+            email: values.email,
+            password: values.password,
+          };
+          const { data } = await sendRequest(
+            "/user/signup",
+            "post",
+            signupData
+          );
+          login(data.userId, data.token);
+          history.replace("/");
         }}
+        validationSchema={yup.object().shape({
+          name: yup.string().min(4).required(),
+          email: yup.string().email().required(),
+          password: yup.string().min(6, "password is too short").required(),
+        })}
       >
         <Form>
           <label>Name:</label>
-          <Field type="text" name="name" placeholder="Enter Name" />
-          <ErrorMessage name="name" />
-          <br /> <br />
+          <Field type="name" name="name" placeholder="Enter Name" />
           <label>Email:</label>
           <Field type="email" name="email" placeholder="Enter Email" />
-          <ErrorMessage name="email" />
           <br /> <br />
           <label>Password:</label>
           <Field type="password" name="password" placeholder="Enter Password" />
-          <ErrorMessage name="password" />
           <br /> <br />
-          <Button type="submit">Signup</Button>
+          <Button type="submit">SignUp</Button>
         </Form>
       </Formik>
     </>

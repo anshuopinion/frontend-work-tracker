@@ -54,9 +54,9 @@ const defaultTheme: DefaultTheme = {
   color: {
     dark: "#000",
     light: "#fff",
-    mainD: "#0E93A4",
-    mainL: "#63C9D7",
-    main: "#22B6CA",
+    mainD: "#1E3A8A",
+    mainL: "#93C5FD",
+    main: "#2563EB",
     sec: "#EBFF09",
     secD: "#FFF500",
   },

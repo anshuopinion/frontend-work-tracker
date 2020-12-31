@@ -7,33 +7,49 @@ import {
 } from "react-router-dom";
 import { ThemeProvider } from "styled-components";
 import Home from "pages/Home";
+import { StylesProvider } from "@material-ui/core";
 import GlobalStyle from "theme/globalStyles";
 import theme from "theme";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { useEffect } from "react";
+import { useAuth } from "hooks/auth-hooks";
+import { useStateValue } from "store";
+
 function App() {
-  // const [{ token, role }] = useStateValue();
+  const [{ token }] = useStateValue();
+  const { setCookieLogin } = useAuth();
+
+  useEffect(() => {
+    setCookieLogin();
+  }, [setCookieLogin]);
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <ThemeProvider theme={theme}>
-        <GlobalStyle />
-        <Router>
-          <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>
-            <Route path="/login">
-              <Login />
-            </Route>
-            <Route path="/signup">
-              <Signup />
-            </Route>
-            <Redirect to="/" />
-          </Switch>
-        </Router>
-      </ThemeProvider>
+      <StylesProvider injectFirst>
+        <ThemeProvider theme={theme}>
+          <GlobalStyle />
+          <Router>
+            <Switch>
+              <Route path="/" exact>
+                <Home />
+              </Route>
+              {token === null && (
+                <Route path="/login">
+                  <Login />
+                </Route>
+              )}
+              {token === null && (
+                <Route path="/signup">
+                  <Signup />
+                </Route>
+              )}
+              <Redirect to="/" />
+            </Switch>
+          </Router>
+        </ThemeProvider>
+      </StylesProvider>
     </QueryClientProvider>
   );
 }

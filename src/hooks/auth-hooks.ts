@@ -33,11 +33,11 @@ export const useAuth = () => {
   const setCookieLogin = useCallback(() => {
     const jwt = cookie.get("jwt");
     if (jwt) {
-      const { role, token, userId } = JSON.parse(
+      const { token, userId } = JSON.parse(
         jwt.split(":").splice(1, 4).join(":")
       );
       if (token && userId) {
-        login(role, userId);
+        login(userId, token);
       }
     }
   }, [login]);
