@@ -1,5 +1,5 @@
 import { useState, useCallback } from "react";
-import axios from "../axios";
+import axios from "../api/axios";
 export const useHttpClient = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<null | string>(null);

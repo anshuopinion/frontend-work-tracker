@@ -1,18 +1,24 @@
-import { Box, Container } from "@material-ui/core";
-import { fetchUser } from "api/fetchUser";
+import { Card, Container, Grid } from "@material-ui/core";
+import { fetchUser } from "api";
 import AddWorkForm from "components/AddWorkForm";
 // import ErrorModal from "components/ui/ErrorModal";
 import Spinner from "components/ui/Spinner";
 import UserProfile from "components/UserProfile";
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery } from "react-query";
+import { useHistory } from "react-router-dom";
 import { useStateValue } from "store";
 
 const Home = () => {
-  const [{ userId }] = useStateValue();
+  const [{ userId, token }] = useStateValue();
+  const history = useHistory();
+  useEffect(() => {
+    if (!userId && !token) {
+      history.replace("/login");
+    }
+  }, [token, userId, history]);
 
-  const { isLoading, isError, data } = useQuery("user", fetchUser(userId));
-  console.log(data);
+  const { isLoading, data } = useQuery("user", () => fetchUser(userId));
 
   return isLoading ? (
     <Spinner />
@@ -20,14 +26,18 @@ const Home = () => {
     <>
       {/* <ErrorModal error={isError} onClose={} /> */}
       <Container>
-        <Box display="flex" justifyContent="space-between">
-          <Box>
+        <Grid container spacing={2}>
+          <Grid item xs={3}>
             <AddWorkForm />
-          </Box>
-          <Box>
-            <UserProfile />
-          </Box>
-        </Box>
+          </Grid>
+          <Grid item xs={9}>
+            <Card>
+              <Grid container>
+                <UserProfile user={data} />
+              </Grid>
+            </Card>
+          </Grid>
+        </Grid>
       </Container>
     </>
   );

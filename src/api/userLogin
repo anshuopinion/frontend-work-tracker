@@ -1,0 +1,18 @@
+// import axios from "api/axios";
+// interface LoginProps {
+//   username: string;
+//   password: string;
+// }
+// // interface LoginRes {
+// //   jwt: string;
+// //   userId: string;
+// // }
+
+// export const userLogin = ({ username, password }: LoginProps) => {
+//   const { data }:{}= axios.post("/user/signin", {
+//     username,
+//     password,
+//   });
+
+//   return data;
+// };

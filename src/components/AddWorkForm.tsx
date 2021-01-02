@@ -7,7 +7,7 @@ import { Box } from "@material-ui/core";
 const AddWorkForm = () => {
   return (
     <>
-      <FormCard height={25} width={20} elevation={12}>
+      <FormCard height={25} elevation={12}>
         <FormTitle>Add work here</FormTitle>
         <Formik
           onSubmit={(values) => {

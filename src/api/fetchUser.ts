@@ -1,8 +1,9 @@
-import axios from "../axios";
+import axios from "./axios";
 
-export const fetchUser = (userId: string | null) => {
-  const { data } = axios.get(`user/${userId}`);
-  console.log(userId);
+export const fetchUser = async (userId: string | null) => {
+  if (userId !== null) {
+    const { data } = await axios.get(`user/${userId}`);
 
-  return data;
+    return data;
+  }
 };
