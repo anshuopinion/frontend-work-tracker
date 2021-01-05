@@ -1,17 +1,14 @@
-import { Avatar, Box, Card, Button, Typography } from "@material-ui/core";
-import styled from "@emotion/styled";
-
 import React from "react";
-import { useAuth } from "hooks";
+// import { useAuth } from "hooks";
 interface Props {
   user: { email: String; _id: string; name: string };
 }
 
 const UserProfile: React.FC<Props> = ({ user }) => {
-  const { logout } = useAuth();
+  // const { logout } = useAuth();
   return (
-    <UserCard>
-      <Box
+    <div>
+      {/* <Box
         display="flex"
         justifyContent="space-between"
         alignItems="center"
@@ -28,14 +25,9 @@ const UserProfile: React.FC<Props> = ({ user }) => {
             Logout
           </Button>
         </Box>
-      </Box>
-    </UserCard>
+      </Box> */}
+    </div>
   );
 };
 
 export default UserProfile;
-
-const UserCard = styled(Card)`
-  /* height: 4rem; */
-  width: 100%;
-`;

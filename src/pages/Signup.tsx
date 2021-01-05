@@ -1,13 +1,14 @@
 import { ErrorMessage, Formik } from "formik";
 import React from "react";
 import { Form, Field } from "formik";
-import { Button } from "element";
+
 import * as yup from "yup";
 import ErrorModal from "components/ui/ErrorModal";
-import Spinner from "components/ui/Spinner";
+
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
 import { useHttpClient } from "hooks/http-hooks";
+import { Spinner } from "@chakra-ui/react";
 const Signup: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();
@@ -50,7 +51,7 @@ const Signup: React.FC = () => {
           <label>Password:</label>
           <Field type="password" name="password" placeholder="Enter Password" />
           <br /> <br />
-          <Button type="submit">SignUp</Button>
+          {/* <Button type="submit">SignUp</Button> */}
         </Form>
       </Formik>
     </>

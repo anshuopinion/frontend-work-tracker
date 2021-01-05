@@ -5,11 +5,11 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { ThemeProvider } from "@emotion/react";
+import { ChakraProvider } from "@chakra-ui/react";
 import Home from "pages/Home";
 import { StylesProvider } from "@material-ui/core";
 
-import theme from "theme";
+import { theme } from "theme";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
 import { QueryClient, QueryClientProvider } from "react-query";
@@ -28,7 +28,7 @@ function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <StylesProvider injectFirst>
-        <ThemeProvider theme={theme}>
+        <ChakraProvider theme={theme}>
           <Router>
             <Switch>
               <Route path="/" exact>
@@ -47,7 +47,7 @@ function App() {
               <Redirect to="/" />
             </Switch>
           </Router>
-        </ThemeProvider>
+        </ChakraProvider>
       </StylesProvider>
     </QueryClientProvider>
   );

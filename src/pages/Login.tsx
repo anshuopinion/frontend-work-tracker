@@ -2,13 +2,14 @@ import { Formik } from "formik";
 import React from "react";
 import * as yup from "yup";
 import { Form, Field } from "formik";
-import { Button } from "element";
+
 import { useHttpClient } from "hooks/http-hooks";
 import ErrorModal from "components/ui/ErrorModal";
-import Spinner from "components/ui/Spinner";
+
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
-import { Card, Flex, Text } from "rebass";
+
+import { Spinner } from "@chakra-ui/react";
 const Login: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();
@@ -19,7 +20,7 @@ const Login: React.FC = () => {
     <>
       <ErrorModal error={error} onClose={clearError}></ErrorModal>
 
-      <Card bg="main">
+      {/* <Card bg="main">
         <Flex
           mx="auto"
           p="1rem"
@@ -66,7 +67,7 @@ const Login: React.FC = () => {
             </Form>
           </Formik>
         </Flex>
-      </Card>
+      </Card> */}
     </>
   );
 };

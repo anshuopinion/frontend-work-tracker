@@ -1,65 +1,39 @@
-import React from "react";
-import styled from "@emotion/styled";
-import { Modal, Button } from "@material-ui/core";
-
-const StyledModal = styled(Modal)`
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
-const ModalBody = styled.div`
-  outline: none;
-
-  border-radius: 0.5rem;
-  background-color: ${(props) => props.theme.colors.light};
-  width: 400px;
-  height: 350px;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 1rem;
-  p {
-    border-radius: 0.3rem;
-    border: 2px solid ${(props) => props.theme.colors.main};
-    color: ${(props) => props.theme.colors.sec};
-    padding: 1rem 0.5rem;
-  }
-`;
-
-const CloseBtn = styled(Button)`
-  background-color: ${(props) => props.theme.colors.sec};
-  color: ${(props) => props.theme.colors.light};
-  width: 5rem;
-  align-self: flex-end;
-  &:hover {
-    background-color: ${(props) => props.theme.colors.main};
-  }
-`;
-
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+} from "@chakra-ui/react";
 interface ErrorModalProps {
   error: string | null;
   onClose: any;
 }
 const ErrorModal: React.FC<ErrorModalProps> = ({ error, onClose }) => {
   return (
-    <StyledModal
-      open={!!error}
-      onClose={onClose}
-      closeAfterTransition
-      className="center"
-      aria-labelledby="Error Modal"
-      aria-describedby="For_SHowing_error"
-    >
-      {
-        <ModalBody>
-          <p>{error}</p>
-          <CloseBtn onClick={onClose}>Clear</CloseBtn>
-        </ModalBody>
-      }
-    </StyledModal>
+    <>
+      <Modal isOpen={!!error} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent>
+          <ModalHeader>Error Screen</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>{error}</ModalBody>
+
+          <ModalFooter>
+            <Button colorScheme="blue" mr={3} onClick={onClose}>
+              Close
+            </Button>
+            <Button variant="ghost">Secondary Action</Button>
+          </ModalFooter>
+        </ModalContent>
+      </Modal>
+    </>
   );
 };
 
 export default ErrorModal;
+// open={!!error}
+// onClose={onClose}

@@ -1,10 +1,10 @@
-import { Card, Container, Grid } from "@material-ui/core";
+import { Spinner } from "@chakra-ui/react";
 import { fetchUser } from "api";
-import AddWorkForm from "components/AddWorkForm";
+// import AddWorkForm from "components/AddWorkForm";
 // import ErrorModal from "components/ui/ErrorModal";
-import Spinner from "components/ui/Spinner";
-import UserProfile from "components/UserProfile";
-import WorkCard from "components/WorkCard";
+
+// import UserProfile from "components/UserProfile";
+// import WorkCard from "components/WorkCard";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
@@ -26,8 +26,8 @@ const Home = () => {
   ) : (
     <>
       {/* <ErrorModal error={isError} onClose={} /> */}
-      <Container>
-        <Grid container spacing={2}>
+      {/* <Container> */}
+      {/* <Grid container spacing={2}>
           <Grid item xs={3}>
             <AddWorkForm />
           </Grid>
@@ -39,8 +39,8 @@ const Home = () => {
               <WorkCard />
             </Card>
           </Grid>
-        </Grid>
-      </Container>
+        </Grid> */}
+      {/* </Container> */}
     </>
   );
 };

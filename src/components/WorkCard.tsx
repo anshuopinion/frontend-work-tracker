@@ -1,11 +1,11 @@
-import { Box, Typography, LinearProgress, Grid, Card } from "@material-ui/core";
+
 
 import React from "react";
 
 const WorkCard: React.FC = () => {
   return (
     <>
-      <Box display="flex" justifyContent="space-between" >
+      {/* <Box display="flex" justifyContent="space-between" >
         <Card>
           <Grid container xs={12}>
             <Typography variant="h5"> New</Typography>
@@ -15,7 +15,7 @@ const WorkCard: React.FC = () => {
           </Grid>
           <h4> arrow</h4>
         </Card>
-      </Box>
+      </Box> */}
     </>
   );
 };
