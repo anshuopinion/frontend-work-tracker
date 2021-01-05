@@ -1,6 +1,6 @@
 import { CircularProgress } from "@material-ui/core";
 import React from "react";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 const StyledSpinner = styled.div<{ fullPage?: boolean }>`
   height: ${(props) => (props.fullPage ? "100vh" : "100%")};
   width: 100%;

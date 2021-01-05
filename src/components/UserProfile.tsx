@@ -1,5 +1,5 @@
 import { Avatar, Box, Card, Button, Typography } from "@material-ui/core";
-import styled from "styled-components";
+import styled from "@emotion/styled";
 
 import React from "react";
 import { useAuth } from "hooks";

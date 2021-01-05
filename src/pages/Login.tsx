@@ -8,7 +8,7 @@ import ErrorModal from "components/ui/ErrorModal";
 import Spinner from "components/ui/Spinner";
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
-import { Card, Flex, Text } from "rebass/styled-components";
+import { Card, Flex, Text } from "rebass";
 const Login: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();

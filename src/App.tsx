@@ -5,10 +5,10 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
-import { ThemeProvider } from "styled-components";
+import { ThemeProvider } from "@emotion/react";
 import Home from "pages/Home";
 import { StylesProvider } from "@material-ui/core";
-import GlobalStyle from "theme/globalStyles";
+
 import theme from "theme";
 import Login from "pages/Login";
 import Signup from "pages/Signup";
@@ -29,7 +29,6 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <StylesProvider injectFirst>
         <ThemeProvider theme={theme}>
-          <GlobalStyle />
           <Router>
             <Switch>
               <Route path="/" exact>

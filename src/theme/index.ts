@@ -1,4 +1,4 @@
-import { DefaultTheme } from "styled-components";
+import { Theme } from "@emotion/react";
 const breakpoints: any = ["360px", "786px", "1024px", "1280px", "1600px"];
 
 breakpoints.sm = breakpoints[0];
@@ -7,8 +7,8 @@ breakpoints.lg = breakpoints[2];
 breakpoints.xl = breakpoints[3];
 breakpoints.xxl = breakpoints[4];
 
-declare module "styled-components" {
-  export interface DefaultTheme {
+declare module "@emotion/react" {
+  export interface Theme {
     colors: {
       dark: string;
       light: string;
@@ -32,7 +32,7 @@ declare module "styled-components" {
     };
   }
 }
-const theme: DefaultTheme = {
+const theme: Theme = {
   colors: {
     dark: "#000",
     light: "#fff",
