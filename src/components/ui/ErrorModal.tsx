@@ -13,7 +13,7 @@ const ModalBody = styled.div`
   outline: none;
 
   border-radius: 0.5rem;
-  background-color: ${(props) => props.theme.color.light};
+  background-color: ${(props) => props.theme.colors.light};
   width: 400px;
   height: 350px;
   display: flex;
@@ -22,19 +22,19 @@ const ModalBody = styled.div`
   padding: 1rem;
   p {
     border-radius: 0.3rem;
-    border: 2px solid ${(props) => props.theme.color.main};
-    color: ${(props) => props.theme.color.sec};
+    border: 2px solid ${(props) => props.theme.colors.main};
+    color: ${(props) => props.theme.colors.sec};
     padding: 1rem 0.5rem;
   }
 `;
 
 const CloseBtn = styled(Button)`
-  background-color: ${(props) => props.theme.color.sec};
-  color: ${(props) => props.theme.color.light};
+  background-color: ${(props) => props.theme.colors.sec};
+  color: ${(props) => props.theme.colors.light};
   width: 5rem;
   align-self: flex-end;
   &:hover {
-    background-color: ${(props) => props.theme.color.main};
+    background-color: ${(props) => props.theme.colors.main};
   }
 `;
 

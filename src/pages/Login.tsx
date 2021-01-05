@@ -8,7 +8,7 @@ import ErrorModal from "components/ui/ErrorModal";
 import Spinner from "components/ui/Spinner";
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
-
+import { Card, Flex, Text } from "rebass/styled-components";
 const Login: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();
@@ -18,31 +18,55 @@ const Login: React.FC = () => {
   ) : (
     <>
       <ErrorModal error={error} onClose={clearError}></ErrorModal>
-      <h1>Login</h1>
 
-      <Formik
-        initialValues={{ email: "", password: "" }}
-        onSubmit={async (values) => {
-          const LoginData = { email: values.email, password: values.password };
-          const { data } = await sendRequest("/user/signin", "post", LoginData);
-          login(data.userId, data.token);
-          history.replace("/");
-        }}
-        validationSchema={yup.object().shape({
-          email: yup.string().email().required(),
-          password: yup.string().min(6, "password is too short").required(),
-        })}
-      >
-        <Form>
-          <label>Email:</label>
-          <Field type="email" name="email" placeholder="Enter Email" />
-          <br /> <br />
-          <label>Password:</label>
-          <Field type="password" name="password" placeholder="Enter Password" />
-          <br /> <br />
-          <Button type="submit">Login</Button>
-        </Form>
-      </Formik>
+      <Card bg="main">
+        <Flex
+          mx="auto"
+          p="1rem"
+          flexDirection="column"
+          color="mainD"
+          maxWidth="30rem"
+        >
+          <Text color={["red", "green"]}> #66ff000202</Text>
+
+          <Formik
+            initialValues={{ email: "", password: "" }}
+            onSubmit={async (values) => {
+              const LoginData = {
+                email: values.email,
+                password: values.password,
+              };
+              const { data } = await sendRequest(
+                "/user/signin",
+                "post",
+                LoginData
+              );
+              login(data.userId, data.token);
+              history.replace("/");
+            }}
+            validationSchema={yup.object().shape({
+              email: yup.string().email().required(),
+              password: yup.string().min(6, "password is too short").required(),
+            })}
+          >
+            <Form>
+              <Flex mx="auto" p="1rem" flexDirection="column">
+                <label>Email:</label>
+                <Field type="email" name="email" placeholder="Enter Email" />
+                <br /> <br />
+                <label>Password:</label>
+                <Field
+                  type="password"
+                  name="password"
+                  placeholder="Enter Password"
+                />
+                <br /> <br />
+                <Button type="submit">Login</Button>
+              </Flex>
+            </Form>
+          </Formik>
+        </Flex>
+      </Card>
     </>
   );
 };

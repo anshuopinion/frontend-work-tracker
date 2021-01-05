@@ -4,6 +4,7 @@ import AddWorkForm from "components/AddWorkForm";
 // import ErrorModal from "components/ui/ErrorModal";
 import Spinner from "components/ui/Spinner";
 import UserProfile from "components/UserProfile";
+import WorkCard from "components/WorkCard";
 import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
@@ -32,9 +33,10 @@ const Home = () => {
           </Grid>
           <Grid item xs={9}>
             <Card>
-              <Grid container>
+              <Grid container xs={12}>
                 <UserProfile user={data} />
               </Grid>
+              <WorkCard />
             </Card>
           </Grid>
         </Grid>

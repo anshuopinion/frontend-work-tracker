@@ -1,8 +1,15 @@
 import { DefaultTheme } from "styled-components";
+const breakpoints: any = ["360px", "786px", "1024px", "1280px", "1600px"];
+
+breakpoints.sm = breakpoints[0];
+breakpoints.md = breakpoints[1];
+breakpoints.lg = breakpoints[2];
+breakpoints.xl = breakpoints[3];
+breakpoints.xxl = breakpoints[4];
 
 declare module "styled-components" {
   export interface DefaultTheme {
-    color: {
+    colors: {
       dark: string;
       light: string;
       mainD: string;
@@ -11,47 +18,22 @@ declare module "styled-components" {
       sec: string;
       secD: string;
     };
-    font: {
+    fonts: {
       font1: string;
       font2: string;
     };
-    fontSize: {
-      xs: string;
+    breakpoints: any;
+    device: {
       sm: string;
-      tiny: string;
-      base: string;
+      md: string;
       lg: string;
       xl: string;
-      xl2: string;
-      xl3: string;
-      xl4: string;
-      xl5: string;
-      xl6: string;
-      xl7: string;
-    };
-    device: {
-      mobileS: string;
-      mobileM: string;
-      mobileL: string;
-      tablet: string;
-      laptop: string;
-      laptopL: string;
-      desktop: string;
+      xxl: string;
     };
   }
 }
-const size = {
-  mobileS: "321px",
-  mobileM: "376px",
-  mobileL: "426px",
-  tablet: "769px",
-  laptop: "1025px",
-  laptopL: "1440px",
-  desktop: "2560px",
-};
-
-const defaultTheme: DefaultTheme = {
-  color: {
+const theme: DefaultTheme = {
+  colors: {
     dark: "#000",
     light: "#fff",
     mainD: "#1E3A8A",
@@ -60,33 +42,18 @@ const defaultTheme: DefaultTheme = {
     sec: "#EBFF09",
     secD: "#FFF500",
   },
-  font: {
+  fonts: {
     font1: "'Ruda', sans-serif",
     font2: "'Ruluko', sans-serif",
   },
-  fontSize: {
-    xs: ".75rem",
-    sm: ".875rem",
-    tiny: ".875rem",
-    base: "1rem",
-    lg: "1.125rem",
-    xl: "1.25rem",
-    xl2: "1.5rem",
-    xl3: "1.875rem",
-    xl4: "2.25rem",
-    xl5: "3rem",
-    xl6: "4rem",
-    xl7: "5rem",
-  },
+  breakpoints,
   device: {
-    mobileS: `@media (max-width: ${size.mobileS})`,
-    mobileM: `@media (max-width: ${size.mobileM})`,
-    mobileL: `@media (max-width: ${size.mobileL})`,
-    tablet: ` @media (max-width: ${size.tablet})`,
-    laptop: ` @media (max-width: ${size.laptop})`,
-    laptopL: `@media (max-width: ${size.laptopL})`,
-    desktop: `@media (max-width: ${size.desktop})`,
+    sm: `@media (min-width: ${breakpoints[0]})`,
+    md: `@media (min-width: ${breakpoints[1]})`,
+    lg: `@media (min-width: ${breakpoints[2]})`,
+    xl: ` @media (min-width: ${breakpoints[3]})`,
+    xxl: ` @media (min-width: ${breakpoints[4]})`,
   },
 };
 
-export default defaultTheme;
+export default theme;

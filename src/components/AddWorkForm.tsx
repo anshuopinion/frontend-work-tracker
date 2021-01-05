@@ -73,7 +73,7 @@ const FormTitle = styled.h3`
   text-align: center;
   margin-bottom: 1rem;
   font-size: 2rem;
-  color: ${(props) => props.theme.color.mainD};
+  color: ${(props) => props.theme.colors.mainD};
 `;
 
 const FormGroup = styled(Box)<FormGroupProps>`
