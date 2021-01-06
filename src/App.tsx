@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import { ChakraProvider } from "@chakra-ui/react";
 import Home from "pages/Home";
-import { StylesProvider } from "@material-ui/core";
 
 import { theme } from "theme";
 import Login from "pages/Login";
@@ -27,28 +26,26 @@ function App() {
   const queryClient = new QueryClient();
   return (
     <QueryClientProvider client={queryClient}>
-      <StylesProvider injectFirst>
-        <ChakraProvider theme={theme}>
-          <Router>
-            <Switch>
-              <Route path="/" exact>
-                <Home />
+      <ChakraProvider theme={theme}>
+        <Router>
+          <Switch>
+            <Route path="/" exact>
+              <Home />
+            </Route>
+            {token === null && (
+              <Route path="/login">
+                <Login />
               </Route>
-              {token === null && (
-                <Route path="/login">
-                  <Login />
-                </Route>
-              )}
-              {token === null && (
-                <Route path="/signup">
-                  <Signup />
-                </Route>
-              )}
-              <Redirect to="/" />
-            </Switch>
-          </Router>
-        </ChakraProvider>
-      </StylesProvider>
+            )}
+            {token === null && (
+              <Route path="/signup">
+                <Signup />
+              </Route>
+            )}
+            <Redirect to="/" />
+          </Switch>
+        </Router>
+      </ChakraProvider>
     </QueryClientProvider>
   );
 }
