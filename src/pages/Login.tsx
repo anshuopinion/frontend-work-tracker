@@ -20,7 +20,7 @@ import {
   Flex,
 } from "@chakra-ui/react";
 import { StyledInputText } from "elements";
-import LSCard from "components/ui/LSCard";
+import LSCard from "components/ui/FormCard";
 
 const Login: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();

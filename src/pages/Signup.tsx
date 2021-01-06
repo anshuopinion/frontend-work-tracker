@@ -16,7 +16,7 @@ import {
   Spinner,
   Text,
 } from "@chakra-ui/react";
-import LSCard from "components/ui/LSCard";
+import LSCard from "components/ui/FormCard";
 import { StyledInputText } from "elements";
 const Signup: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();

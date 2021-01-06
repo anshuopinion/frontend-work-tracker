@@ -3,7 +3,7 @@ import {
   Modal as ChakraModal,
   ModalOverlay,
   ModalContent,
-  ModalHeader,
+  // ModalHeader,
   ModalFooter,
   ModalBody,
   ModalCloseButton,
@@ -28,7 +28,6 @@ const Modal: React.FC<ModalProps> = ({ open, onClose, children }) => {
           <Button colorScheme="blue" mr={3} onClick={onClose}>
             Close
           </Button>
-          <Button variant="ghost">Secondary Action</Button>
         </ModalFooter>
       </ModalContent>
     </ChakraModal>
