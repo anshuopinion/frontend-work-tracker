@@ -5,8 +5,8 @@ const Card = chakra("div", {
     px: "4",
     py: "5",
     rounded: "sm",
-    
-    shadow: "md",
+    shadow: "base",
+    // boxShadow: "0px 0px 6px  rgba(0,0,0,0.2)",
   },
 });
 

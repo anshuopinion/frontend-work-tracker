@@ -15,7 +15,11 @@ const AddWorkForm = () => {
     <>
       <Flex flexDirection="column">
         <Card pb={14}>
-          <Heading textAlign="center" fontSize="3xl" mb={2}>
+          <Heading
+            textAlign="center"
+            fontSize={{ base: "2xl", md: "3xl" }}
+            mb={2}
+          >
             Add your work
           </Heading>
           <Formik

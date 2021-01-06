@@ -11,7 +11,7 @@ const WorkCard: React.FC = () => {
         <Flex justifyContent="space-between">
           <Box width={7 / 8}>
             <Stack>
-              <Heading as="h6" fontSize="2xl">
+              <Heading as="h6" fontSize={{ base: "md", md: "xl" }}>
                 Learing Figma
               </Heading>
               <Progress colorScheme="red" value={50} />

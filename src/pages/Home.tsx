@@ -1,10 +1,12 @@
 import {
   Box,
   Container,
+  grid,
   Grid,
   GridItem,
   SimpleGrid,
   Spinner,
+  Stack,
 } from "@chakra-ui/react";
 import { fetchUser } from "api";
 import AddWorkForm from "components/AddWorkForm";
@@ -41,15 +43,18 @@ const Home = () => {
     <>
       {/* <ErrorModal error={error} onClose={isSuccess} /> */}
       <Container maxW="1200px">
-        <Grid templateColumns="3fr 7fr" gap={2}>
-          <GridItem>
+        <Grid mt={10} gap={{ base: 2, md: 6 }}>
+          <GridItem colSpan={8}>
+            <UserProfile user={data} />
+          </GridItem>
+          <GridItem colSpan={{ base: 8, md: 2 }}>
             <AddWorkForm />
           </GridItem>
-          <GridItem>
-            <GridItem>
-              <UserProfile user={data} />
-            </GridItem>
-            <WorkCard />
+          <GridItem colSpan={{ base: 8, md: 6 }}>
+            <Grid gap={{ base: 2, md: 4 }}>
+              <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard />{" "}
+              <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard />
+            </Grid>
           </GridItem>
         </Grid>
       </Container>
