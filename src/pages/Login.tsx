@@ -1,15 +1,27 @@
-import { Formik } from "formik";
+import { ErrorMessage, Formik } from "formik";
 import React from "react";
 import * as yup from "yup";
 import { Form, Field } from "formik";
-
+// import { InputControl } from "formik-chakra-ui";
 import { useHttpClient } from "hooks/http-hooks";
 import ErrorModal from "components/ui/ErrorModal";
+import styled from "@emotion/styled";
 
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
 
-import { Spinner } from "@chakra-ui/react";
+import {
+  Flex,
+  Spinner,
+  Button,
+  FormControl,
+  FormLabel,
+  Heading,
+  FormErrorMessage,
+  Text,
+} from "@chakra-ui/react";
+import { Card } from "elements";
+
 const Login: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();
@@ -20,16 +32,21 @@ const Login: React.FC = () => {
     <>
       <ErrorModal error={error} onClose={clearError}></ErrorModal>
 
-      {/* <Card bg="main">
-        <Flex
-          mx="auto"
-          p="1rem"
-          flexDirection="column"
-          color="mainD"
-          maxWidth="30rem"
+      <Flex
+        mx="auto"
+        flexDirection="column"
+        color="mainD"
+        maxWidth="30rem"
+        my="2rem"
+      >
+        {" "}
+        <Card
+          rounded={{ base: "none", md: "lg" }}
+          shadow={{ base: "none", md: "md" }}
         >
-          <Text color={["red", "green"]}> #66ff000202</Text>
-
+          <Heading as="h4" color={["red", "green"]} textAlign="center">
+            Login
+          </Heading>
           <Formik
             initialValues={{ email: "", password: "" }}
             onSubmit={async (values) => {
@@ -52,24 +69,50 @@ const Login: React.FC = () => {
           >
             <Form>
               <Flex mx="auto" p="1rem" flexDirection="column">
-                <label>Email:</label>
-                <Field type="email" name="email" placeholder="Enter Email" />
-                <br /> <br />
-                <label>Password:</label>
-                <Field
-                  type="password"
-                  name="password"
-                  placeholder="Enter Password"
-                />
-                <br /> <br />
-                <Button type="submit">Login</Button>
+                <FormControl>
+                  <FormLabel>Email:</FormLabel>
+                  <StyledInput
+                    type="email"
+                    name="email"
+                    placeholder="Enter Email"
+                  />
+
+                  <Text pl="1rem" color="#fc0324" textTransform="capitalize">
+                    <ErrorMessage name="email" />
+                  </Text>
+                </FormControl>
+
+                <FormControl>
+                  <FormLabel>Password:</FormLabel>
+                  <StyledInput
+                    type="password"
+                    name="password"
+                    placeholder="Enter Password"
+                  />
+                  <Text pl="1rem" color="#fc0324" textTransform="capitalize">
+                    <ErrorMessage name="email" />
+                  </Text>
+                </FormControl>
+
+                <Button mt="1rem" type="submit">
+                  Login
+                </Button>
               </Flex>
             </Form>
           </Formik>
-        </Flex>
-      </Card> */}
+        </Card>
+      </Flex>
     </>
   );
 };
 
 export default Login;
+
+const StyledInput = styled(Field)`
+  width: 100%;
+  padding: 0.2rem 1rem;
+  &:focus {
+    outline-color: red;
+    transition: 0.2s ease-in-out;
+  }
+`;
