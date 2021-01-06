@@ -46,12 +46,10 @@ const Home = () => {
             <AddWorkForm />
           </GridItem>
           <GridItem>
-            <Card>
-              <GridItem>
-                <UserProfile user={data} />
-              </GridItem>
-              <WorkCard />
-            </Card>
+            <GridItem>
+              <UserProfile user={data} />
+            </GridItem>
+            <WorkCard />
           </GridItem>
         </Grid>
       </Container>
