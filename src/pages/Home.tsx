@@ -1,5 +1,17 @@
-import { Spinner } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Grid,
+  GridItem,
+  SimpleGrid,
+  Spinner,
+} from "@chakra-ui/react";
 import { fetchUser } from "api";
+import AddWorkForm from "components/AddWorkForm";
+import UserProfile from "components/UserProfile";
+import WorkCard from "components/WorkCard";
+import { Card } from "elements";
+// import ErrorModal from "components/ui/ErrorModal";
 // import AddWorkForm from "components/AddWorkForm";
 // import ErrorModal from "components/ui/ErrorModal";
 
@@ -19,28 +31,30 @@ const Home = () => {
     }
   }, [token, userId, history]);
 
-  const { isLoading, data } = useQuery("user", () => fetchUser(userId));
+  const { isLoading, data, error, isSuccess } = useQuery("user", () =>
+    fetchUser(userId)
+  );
 
   return isLoading ? (
     <Spinner />
   ) : (
     <>
-      {/* <ErrorModal error={isError} onClose={} /> */}
-      {/* <Container> */}
-      {/* <Grid container spacing={2}>
-          <Grid item xs={3}>
+      {/* <ErrorModal error={error} onClose={isSuccess} /> */}
+      <Container maxW="1200px">
+        <Grid templateColumns="3fr 7fr" gap={2}>
+          <GridItem>
             <AddWorkForm />
-          </Grid>
-          <Grid item xs={9}>
+          </GridItem>
+          <GridItem>
             <Card>
-              <Grid container xs={12}>
+              <GridItem>
                 <UserProfile user={data} />
-              </Grid>
+              </GridItem>
               <WorkCard />
             </Card>
-          </Grid>
-        </Grid> */}
-      {/* </Container> */}
+          </GridItem>
+        </Grid>
+      </Container>
     </>
   );
 };

@@ -3,6 +3,7 @@ import React from "react";
 import * as yup from "yup";
 import { Form, Field } from "formik";
 // import { InputControl } from "formik-chakra-ui";
+import { InputControl } from "formik-chakra-ui";
 import { useHttpClient } from "hooks/http-hooks";
 import ErrorModal from "components/ui/ErrorModal";
 import styled from "@emotion/styled";
@@ -19,7 +20,7 @@ import {
   Text,
   Flex,
 } from "@chakra-ui/react";
-import { StyledInputText } from "elements";
+
 import LSCard from "components/ui/FormCard";
 
 const Login: React.FC = () => {
@@ -59,27 +60,20 @@ const Login: React.FC = () => {
             <Flex mx="auto" p="1rem" flexDirection="column">
               <FormControl>
                 <FormLabel>Email:</FormLabel>
-                <StyledInputText
-                  type="email"
+                <InputControl
+                  inputProps={{ type: "email" }}
                   name="email"
                   placeholder="Enter Email"
                 />
-
-                <Text pl="1rem" color="#fc0324" textTransform="capitalize">
-                  <ErrorMessage name="email" />
-                </Text>
               </FormControl>
 
               <FormControl>
                 <FormLabel>Password:</FormLabel>
-                <StyledInputText
-                  type="password"
+                <InputControl
+                  inputProps={{ type: "password" }}
                   name="password"
                   placeholder="Enter Password"
                 />
-                <Text pl="1rem" color="#fc0324" textTransform="capitalize">
-                  <ErrorMessage name="email" />
-                </Text>
               </FormControl>
 
               <Button mt="1rem" type="submit">

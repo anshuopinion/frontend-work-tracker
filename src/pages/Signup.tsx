@@ -17,7 +17,8 @@ import {
   Text,
 } from "@chakra-ui/react";
 import LSCard from "components/ui/FormCard";
-import { StyledInputText } from "elements";
+
+import { InputControl } from "formik-chakra-ui";
 const Signup: React.FC = () => {
   const { sendRequest, loading, error, clearError } = useHttpClient();
   const { login } = useAuth();
@@ -58,38 +59,29 @@ const Signup: React.FC = () => {
             <Flex flexDirection="column">
               <FormControl>
                 <FormLabel>Name:</FormLabel>
-                <StyledInputText
-                  type="name"
+                <InputControl
+                  inputProps={{ type: "text" }}
                   name="name"
                   placeholder="Enter Name"
                 />
-                <Text pl="1rem" color="#fc0324" textTransform="capitalize">
-                  <ErrorMessage name="name" />
-                </Text>
               </FormControl>
               <FormControl>
                 <FormLabel>Email:</FormLabel>
-                <StyledInputText
-                  type="email"
+                <InputControl
+                  inputProps={{ type: "email" }}
                   name="email"
                   placeholder="Enter Email"
                 />{" "}
-                <Text pl="1rem" color="#fc0324" textTransform="capitalize">
-                  <ErrorMessage name="email" />
-                </Text>
               </FormControl>
 
               <FormControl>
                 {" "}
                 <FormLabel>Password:</FormLabel>
-                <StyledInputText
-                  type="password"
+                <InputControl
+                  inputProps={{ type: "password" }}
                   name="password"
                   placeholder="Enter Password"
                 />
-                <Text pl="1rem" color="#fc0324" textTransform="capitalize">
-                  <ErrorMessage name="password" />
-                </Text>
               </FormControl>
 
               <Button mt="1rem" type="submit">
