@@ -5,7 +5,8 @@ const Card = chakra("div", {
     px: "4",
     py: "5",
     rounded: "sm",
-    shadow: "lg",
+    
+    shadow: "md",
   },
 });
 
