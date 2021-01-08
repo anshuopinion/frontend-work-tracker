@@ -4,9 +4,16 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Card } from "elements";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
+import { IWork } from "Types";
+import Calander from "./ui/Calander";
 
-const WorkCard: React.FC = () => {
+interface Props {
+  data: IWork;
+}
+
+const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
+
   console.log(isCardOpen);
 
   const toggle = () => {
@@ -45,7 +52,7 @@ const WorkCard: React.FC = () => {
                     },
                   }}
                 >
-                  hi
+                  <Calander />
                 </Box>
               )}
             </AnimatePresence>

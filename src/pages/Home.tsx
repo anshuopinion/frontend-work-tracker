@@ -23,6 +23,11 @@ import React, { useEffect } from "react";
 import { useQuery } from "react-query";
 import { useHistory } from "react-router-dom";
 import { useStateValue } from "store";
+import { IWork as Iwork } from "Types";
+
+interface IWork extends Iwork {
+  _id: string;
+}
 
 const Home = () => {
   const [{ userId, token }] = useStateValue();
@@ -36,6 +41,8 @@ const Home = () => {
   const { isLoading, data, error, isSuccess } = useQuery("user", () =>
     fetchUser(userId)
   );
+
+  console.log(data);
 
   return isLoading ? (
     <Spinner />
@@ -52,8 +59,10 @@ const Home = () => {
           </GridItem>
           <GridItem colSpan={{ base: 8, md: 6 }}>
             <Grid gap={{ base: 2, md: 4 }}>
-              <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard />{" "}
-              <WorkCard /> <WorkCard /> <WorkCard /> <WorkCard />
+              {data.works &&
+                data.works.map((work: IWork) => (
+                  <WorkCard key={work._id} data={work} />
+                ))}
             </Grid>
           </GridItem>
         </Grid>
