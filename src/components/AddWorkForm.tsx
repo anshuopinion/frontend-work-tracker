@@ -13,9 +13,10 @@ import { Card } from "elements";
 
 import { addNewWork } from "api";
 import { useStateValue } from "store";
-import { useMutation } from "react-query";
+import { QueryClient, useMutation, useQueryClient } from "react-query";
 
 const AddWorkForm = () => {
+  const queryClient = useQueryClient();
   const [{ userId }] = useStateValue();
   const { mutateAsync, isLoading } = useMutation(addNewWork);
 
@@ -42,6 +43,7 @@ const AddWorkForm = () => {
                 };
 
                 await mutateAsync({ userId, workData });
+                queryClient.invalidateQueries("works");
               }}
               initialValues={{
                 work_name: "",

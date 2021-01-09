@@ -1,4 +1,4 @@
-import { ErrorMessage, Formik } from "formik";
+import { Formik } from "formik";
 import React from "react";
 import { Form } from "formik";
 
@@ -14,7 +14,6 @@ import {
   FormLabel,
   Heading,
   Spinner,
-  Text,
 } from "@chakra-ui/react";
 import LSCard from "components/ui/FormCard";
 

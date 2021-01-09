@@ -1,6 +1,15 @@
-import { Box, Flex, Heading, Progress, Stack } from "@chakra-ui/react";
+import {
+  background,
+  Box,
+  color,
+  Flex,
+  Heading,
+  Progress,
+  Stack,
+} from "@chakra-ui/react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { worker } from "cluster";
 import { Card } from "elements";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
@@ -14,8 +23,6 @@ interface Props {
 const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
 
-  console.log(isCardOpen);
-
   const toggle = () => {
     setIsCardOpen((prev) => !prev);
   };
@@ -28,9 +35,9 @@ const WorkCard: React.FC<Props> = ({ data }) => {
             <Box width={7 / 8}>
               <Stack as={motion.div}>
                 <Heading as="h6" fontSize={{ base: "md", md: "xl" }}>
-                  Learing Figma
+                  {data.work_name}
                 </Heading>
-                <Progress colorScheme="red" value={50} />
+                <Progress backgroundColor={data.work_color} value={50} />
               </Stack>
             </Box>
             <Box as={motion.div} whileTap={{ scale: 1.4 }}>

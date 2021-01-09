@@ -20,3 +20,10 @@ export const addNewWork = async ({ userId, workData }: IAddNewWork) => {
     return data;
   }
 };
+
+export const fetchWorks = async (userId: string) => {
+  if (userId !== null) {
+    const { data } = await axios.get(`/work/all/${userId}`);
+    return data;
+  }
+};

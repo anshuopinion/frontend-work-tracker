@@ -1,12 +1,11 @@
-import { ErrorMessage, Formik } from "formik";
+import { Formik } from "formik";
 import React from "react";
 import * as yup from "yup";
-import { Form, Field } from "formik";
+import { Form } from "formik";
 // import { InputControl } from "formik-chakra-ui";
 import { InputControl } from "formik-chakra-ui";
 import { useHttpClient } from "hooks/http-hooks";
 import ErrorModal from "components/ui/ErrorModal";
-import styled from "@emotion/styled";
 
 import { useAuth } from "hooks/auth-hooks";
 import { useHistory } from "react-router-dom";
@@ -17,7 +16,6 @@ import {
   FormControl,
   FormLabel,
   Heading,
-  Text,
   Flex,
 } from "@chakra-ui/react";
 

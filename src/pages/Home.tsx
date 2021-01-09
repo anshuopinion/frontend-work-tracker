@@ -1,18 +1,9 @@
-import {
-  Box,
-  Container,
-  grid,
-  Grid,
-  GridItem,
-  SimpleGrid,
-  Spinner,
-  Stack,
-} from "@chakra-ui/react";
-import { fetchUser } from "api";
+import { Container, Grid, GridItem, Spinner } from "@chakra-ui/react";
+import { fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
-import { Card } from "elements";
+
 // import ErrorModal from "components/ui/ErrorModal";
 // import AddWorkForm from "components/AddWorkForm";
 // import ErrorModal from "components/ui/ErrorModal";
@@ -38,11 +29,10 @@ const Home = () => {
     }
   }, [token, userId, history]);
 
-  const { isLoading, data, error, isSuccess } = useQuery("user", () =>
-    fetchUser(userId)
+  const { isLoading, data: user } = useQuery("user", () => fetchUser(userId));
+  const { data: works } = useQuery([user && "works"], () =>
+    fetchWorks(user.id)
   );
-
-  console.log(data);
 
   return isLoading ? (
     <Spinner />
@@ -52,17 +42,16 @@ const Home = () => {
       <Container maxW="1200px">
         <Grid mt={10} gap={{ base: 2, md: 6 }}>
           <GridItem colSpan={8}>
-            <UserProfile user={data} />
+            <UserProfile user={user} />
           </GridItem>
           <GridItem colSpan={{ base: 8, md: 2 }}>
             <AddWorkForm />
           </GridItem>
           <GridItem colSpan={{ base: 8, md: 6 }}>
             <Grid gap={{ base: 2, md: 4 }}>
-              {data.works &&
-                data.works.map((work: IWork) => (
-                  <WorkCard key={work._id} data={work} />
-                ))}
+              {works?.map((work: IWork) => (
+                <WorkCard key={work._id} data={work} />
+              ))}
             </Grid>
           </GridItem>
         </Grid>
