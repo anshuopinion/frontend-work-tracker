@@ -18,6 +18,7 @@ import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { IWork } from "Types";
 import Calander from "./ui/Calander";
+import StyledProgress from "./ui/StyledProgress";
 
 interface Props {
   data: IWork;
@@ -49,7 +50,10 @@ const WorkCard: React.FC<Props> = ({ data }) => {
                   <Heading as="h6" fontSize={{ base: "md", md: "xl" }}>
                     {data.work_name}
                   </Heading>
-                  <Progress backgroundColor={data.work_color} value={50} />
+                  <StyledProgress
+                    color={`${data.work_color}`}
+                    height={`1.4rem`}
+                  />
                 </Stack>
               </Box>
               <Box as={motion.div} whileTap={{ scale: 1.4 }} onClick={toggle}>

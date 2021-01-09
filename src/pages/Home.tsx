@@ -3,7 +3,7 @@ import { addNewWork, fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
-import { AnimateSharedLayout } from "framer-motion";
+
 import React, { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { useHistory } from "react-router-dom";
