@@ -26,11 +26,11 @@ interface Props {
 const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const queryClient = useQueryClient();
-  const { isLoading, mutateAsync } = useMutation(deleteWork);
+  const { isLoading, mutate } = useMutation(deleteWork);
 
   const removeHandler = async () => {
-    await mutateAsync({ workId: data._id });
-    queryClient.invalidateQueries("works");
+    mutate({ workId: data._id });
+    await queryClient.invalidateQueries("works");
   };
   const toggle = () => {
     setIsCardOpen((prev) => !prev);

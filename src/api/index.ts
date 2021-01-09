@@ -9,7 +9,7 @@ export const fetchUser = async (userId: string | null) => {
   }
 };
 
-interface IAddNewWork {
+export interface IAddNewWork {
   userId: string | null;
   workData: IWork;
 }
