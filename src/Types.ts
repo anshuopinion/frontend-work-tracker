@@ -5,6 +5,7 @@ export enum roleType {
 }
 
 export interface IWork {
+  _id?: string;
   work_name: string;
   work_color: string;
   work_complete_date: Date;

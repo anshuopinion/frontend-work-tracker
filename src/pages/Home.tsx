@@ -3,6 +3,7 @@ import { fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
+import { AnimateSharedLayout } from "framer-motion";
 
 // import ErrorModal from "components/ui/ErrorModal";
 // import AddWorkForm from "components/AddWorkForm";
@@ -49,9 +50,11 @@ const Home = () => {
           </GridItem>
           <GridItem colSpan={{ base: 8, md: 6 }}>
             <Grid gap={{ base: 2, md: 4 }}>
-              {works?.map((work: IWork) => (
-                <WorkCard key={work._id} data={work} />
-              ))}
+              <AnimateSharedLayout>
+                {works?.map((work: IWork) => (
+                  <WorkCard key={work._id} data={work} />
+                ))}
+              </AnimateSharedLayout>
             </Grid>
           </GridItem>
         </Grid>
