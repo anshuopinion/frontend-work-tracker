@@ -3,7 +3,6 @@ import {
   CloseButton,
   Flex,
   Heading,
-  Progress,
   Spinner,
   Stack,
 } from "@chakra-ui/react";
