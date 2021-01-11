@@ -8,6 +8,7 @@ import {
 } from "@chakra-ui/react";
 import { addNewWork, fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
+import ErrorModal from "components/ui/ErrorModal";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
 import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
@@ -32,11 +33,15 @@ const Home = () => {
   const { isLoading, data: user } = useQuery("user", () => fetchUser(userId));
 
   //Fetch All works
-  const { data: works } = useQuery([user && "works"], () =>
-    fetchWorks(user.id)
-  );
+  const { data: works } = useQuery([user && "works"], () => {
+    if (user) {
+      return fetchWorks(user.id);
+    }
+  });
   //AddNewWork
-  const { isLoading: cardLoading, mutateAsync } = useMutation(addNewWork);
+  const { isLoading: cardLoading, error, mutateAsync } = useMutation(
+    addNewWork
+  );
 
   const addWorkHandler = async (workData: IWork) => {
     await mutateAsync({ userId, workData });
@@ -47,7 +52,7 @@ const Home = () => {
     <Spinner />
   ) : (
     <>
-      {/* <ErrorModal error={error} onClose={isSuccess} /> */}
+      <ErrorModal error={error} />
       <Container maxW="1200px">
         <Grid mt={10} gap={{ base: 2, md: 6 }}>
           <GridItem colSpan={8}>

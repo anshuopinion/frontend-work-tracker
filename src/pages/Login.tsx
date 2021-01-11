@@ -22,14 +22,14 @@ import {
 import LSCard from "components/ui/FormCard";
 
 const Login: React.FC = () => {
-  const { sendRequest, loading, error, clearError } = useHttpClient();
+  const { sendRequest, loading, error } = useHttpClient();
   const { login } = useAuth();
   const history = useHistory();
   return loading ? (
     <Spinner />
   ) : (
     <>
-      <ErrorModal error={error} onClose={clearError}></ErrorModal>
+      <ErrorModal error={error}></ErrorModal>
       <LSCard>
         <Heading as="h4" color={["red", "green"]} textAlign="center">
           Login

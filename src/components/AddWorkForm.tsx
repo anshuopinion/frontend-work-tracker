@@ -1,17 +1,18 @@
 import { Form, Formik } from "formik";
+import * as yup from "yup";
 import {
   Button,
   Flex,
   FormControl,
   FormLabel,
   Heading,
-  Spinner,
   Stack,
 } from "@chakra-ui/react";
 import { InputControl } from "formik-chakra-ui";
 import { Card } from "elements";
 import { FC } from "react";
 import { IWork } from "Types";
+
 interface Props {
   addWorkHandler: (workData: IWork) => void;
 }
@@ -43,6 +44,11 @@ const AddWorkForm: FC<Props> = ({ addWorkHandler }) => {
               work_color: "",
               work_complete_date: "",
             }}
+            validationSchema={yup.object().shape({
+              work_name: yup.string().min(4).required(),
+              work_color: yup.string().required(),
+              work_complete_date: yup.date().required(),
+            })}
           >
             <Form>
               <Stack>

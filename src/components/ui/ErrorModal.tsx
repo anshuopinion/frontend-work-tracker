@@ -6,27 +6,26 @@ import {
   ModalFooter,
   ModalBody,
   ModalCloseButton,
-  Button,
 } from "@chakra-ui/react";
+import { useState } from "react";
 interface ErrorModalProps {
-  error: string | null;
-  onClose: any;
+  error: any;
 }
-const ErrorModal: React.FC<ErrorModalProps> = ({ error, onClose }) => {
+const ErrorModal: React.FC<ErrorModalProps> = ({ error }) => {
+  const [modalState, setModalState] = useState(!!error);
+
+  const closeModal = () => {
+    setModalState(false);
+  };
   return (
     <>
-      <Modal isOpen={!!error} onClose={onClose}>
+      <Modal isOpen={modalState} onClose={closeModal}>
         <ModalOverlay />
         <ModalContent>
           <ModalHeader>Error Screen</ModalHeader>
           <ModalCloseButton />
           <ModalBody>{error}</ModalBody>
-
-          <ModalFooter>
-            <Button colorScheme="green" mr={3} onClick={onClose}>
-              Close
-            </Button>
-          </ModalFooter>
+          <ModalFooter></ModalFooter>
         </ModalContent>
       </Modal>
     </>
