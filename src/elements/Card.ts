@@ -4,10 +4,10 @@ const Card = chakra("div", {
   baseStyle: {
     px: "4",
     py: "5",
-    rounded: "sm",
+    rounded: "lg",
     shadow: "base",
     bg: "#fff",
-    // boxShadow: "0px 0px 6px  rgba(0,0,0,0.2)",
+    boxShadow: "0px 0px 6px  rgba(0,0,0,0.2)",
   },
 });
 

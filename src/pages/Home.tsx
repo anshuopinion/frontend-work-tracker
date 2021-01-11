@@ -1,8 +1,9 @@
-import { Container, Grid, GridItem, Spinner } from "@chakra-ui/react";
+import { Container, Grid, GridItem, List, Spinner } from "@chakra-ui/react";
 import { addNewWork, fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
+import { AnimateSharedLayout, motion } from "framer-motion";
 
 import React, { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -50,9 +51,13 @@ const Home = () => {
           </GridItem>
           <GridItem colSpan={{ base: 8, md: 6 }}>
             <Grid gap={{ base: 2, md: 4 }}>
-              {works?.map((work: IWork) => (
-                <WorkCard key={work._id} data={work} />
-              ))}
+              <AnimateSharedLayout>
+                <List as={motion.ul} layout>
+                  {works?.map((work: IWork) => (
+                    <WorkCard key={work._id} data={work} />
+                  ))}
+                </List>{" "}
+              </AnimateSharedLayout>
               {cardLoading && <Spinner />}
             </Grid>
           </GridItem>

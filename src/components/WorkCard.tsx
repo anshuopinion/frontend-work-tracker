@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteWork } from "api";
 
 import { Card } from "elements";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { IWork } from "Types";
@@ -27,10 +27,10 @@ interface Props {
 const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
   const queryClient = useQueryClient();
-  const { isLoading, mutate } = useMutation(deleteWork);
+  const { isLoading, mutateAsync } = useMutation(deleteWork);
 
   const removeHandler = async () => {
-    mutate({ workId: data._id });
+    await mutateAsync({ workId: data._id });
     await queryClient.invalidateQueries("works");
   };
   const toggle = () => {
@@ -39,53 +39,58 @@ const WorkCard: React.FC<Props> = ({ data }) => {
 
   return (
     <>
-      {isLoading ? (
+      {/* {isLoading ? (
         <Spinner />
-      ) : (
-        <Card>
-          <Stack>
-            <Flex justifyContent="space-between">
-              <Box width={7 / 8} onClick={toggle}>
-                <Stack as={motion.div}>
-                  <Heading as="h6" fontSize={{ base: "md", md: "xl" }}>
-                    {data.work_name}
-                  </Heading>
-                  <StyledProgress
-                    color={`${data.work_color}`}
-                    height={`1.4rem`}
-                  />
-                </Stack>
-              </Box>
-              <Box as={motion.div} whileTap={{ scale: 1.4 }} onClick={toggle}>
-                <FontAwesomeIcon icon={faAngleDown} size="2x" />
-              </Box>
-              <Box as={motion.div} whileTap={{ scale: 1.4 }}>
+      ) : ( */}
+      <Card mb={2} layout as={motion.li}>
+        <Stack>
+          <Flex justifyContent="space-between">
+            <Box width={7 / 8} onClick={toggle}>
+              <Stack as={motion.div}>
+                <Heading as="h6" fontSize={{ base: "md", md: "xl" }}>
+                  {data.work_name}
+                </Heading>
+                <StyledProgress
+                  color={`${data.work_color}`}
+                  height={`1.4rem`}
+                />
+              </Stack>
+            </Box>
+            <Box as={motion.div} whileTap={{ scale: 1.4 }} onClick={toggle}>
+              <FontAwesomeIcon icon={faAngleDown} size="2x" />
+            </Box>
+            <Box as={motion.div} whileTap={{ scale: 1.4 }}>
+              {isLoading ? (
+                <Spinner />
+              ) : (
                 <CloseButton onClick={removeHandler} />
-              </Box>
-            </Flex>
+              )}
+            </Box>
+          </Flex>
 
-            <Flex>
-              <AnimatePresence>
-                {isCardOpen && (
-                  <Box
-                    as={motion.div}
-                    initial={{ height: 0 }}
-                    animate={{ height: "auto" }}
-                    exit={{
-                      height: 0,
-                      transition: {
-                        duration: 0.3,
-                      },
-                    }}
-                  >
-                    <Calander />
-                  </Box>
-                )}
-              </AnimatePresence>
-            </Flex>
-          </Stack>
-        </Card>
-      )}
+          <Flex>
+            <AnimatePresence>
+              {isCardOpen && (
+                <Box
+                  layout
+                  as={motion.div}
+                  initial={{ height: 0 }}
+                  animate={{ height: "auto" }}
+                  exit={{
+                    height: 0,
+                    transition: {
+                      duration: 0.3,
+                    },
+                  }}
+                >
+                  <Calander />
+                </Box>
+              )}
+            </AnimatePresence>
+          </Flex>
+        </Stack>
+      </Card>
+      {/* )} */}
     </>
   );
 };

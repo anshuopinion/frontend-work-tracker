@@ -1,9 +1,15 @@
 import { Table, Tr, Thead, Tbody } from "@chakra-ui/react";
+import { motion } from "framer-motion";
 import React from "react";
 
 const Calander = () => {
   return (
-    <div>
+    <motion.div
+      layout
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+    >
       <div className="Calendar">
         <Table className="Calendar-table">
           <caption className="Calendar-caption">2020/7</caption>
@@ -76,7 +82,7 @@ const Calander = () => {
           </Tbody>
         </Table>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
