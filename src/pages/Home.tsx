@@ -1,9 +1,16 @@
-import { Container, Grid, GridItem, List, Spinner } from "@chakra-ui/react";
+import {
+  Container,
+  Grid,
+  GridItem,
+  List,
+  ListItem,
+  Spinner,
+} from "@chakra-ui/react";
 import { addNewWork, fetchUser, fetchWorks } from "api";
 import AddWorkForm from "components/AddWorkForm";
 import UserProfile from "components/UserProfile";
 import WorkCard from "components/WorkCard";
-import { AnimateSharedLayout, motion } from "framer-motion";
+import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
 
 import React, { useEffect } from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
@@ -52,11 +59,29 @@ const Home = () => {
           <GridItem colSpan={{ base: 8, md: 6 }}>
             <Grid gap={{ base: 2, md: 4 }}>
               <AnimateSharedLayout>
-                <List as={motion.ul} layout>
-                  {works?.map((work: IWork) => (
-                    <WorkCard key={work._id} data={work} />
-                  ))}
-                </List>{" "}
+                <List as={motion.ul}>
+                  <AnimatePresence>
+                    {works?.map((work: IWork) => (
+                      <ListItem
+                        key={work._id}
+                        as={motion.li}
+                        initial={{ x: "100vw", opacity: 0 }}
+                        animate={{
+                          x: 0,
+                          opacity: 1,
+                          transition: { damping: 0.1, duration: 0.5 },
+                        }}
+                        exit={{
+                          height: 0,
+                          opacity: 0,
+                          transition: { duration: 0.3 },
+                        }}
+                      >
+                        <WorkCard data={work} />
+                      </ListItem>
+                    ))}
+                  </AnimatePresence>
+                </List>
               </AnimateSharedLayout>
               {cardLoading && <Spinner />}
             </Grid>

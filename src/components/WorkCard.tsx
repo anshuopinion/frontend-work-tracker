@@ -13,7 +13,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { deleteWork } from "api";
 
 import { Card } from "elements";
-import { AnimatePresence, AnimateSharedLayout, motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
 import { IWork } from "Types";
@@ -42,7 +42,7 @@ const WorkCard: React.FC<Props> = ({ data }) => {
       {/* {isLoading ? (
         <Spinner />
       ) : ( */}
-      <Card mb={2} layout as={motion.li}>
+      <Card mb={2}>
         <Stack>
           <Flex justifyContent="space-between">
             <Box width={7 / 8} onClick={toggle}>

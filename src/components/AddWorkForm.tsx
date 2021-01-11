@@ -20,7 +20,7 @@ const AddWorkForm: FC<Props> = ({ addWorkHandler }) => {
   return (
     <>
       <Flex flexDirection="column">
-        <Card pb={14}>
+        <Card pb={20}>
           <Heading
             textAlign="center"
             fontSize={{ base: "2xl", md: "3xl" }}
