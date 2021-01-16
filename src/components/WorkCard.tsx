@@ -25,6 +25,7 @@ interface Props {
 
 const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
+  const days = [];
   const queryClient = useQueryClient();
   const { isLoading, mutateAsync } = useMutation(deleteWork);
 
@@ -35,6 +36,10 @@ const WorkCard: React.FC<Props> = ({ data }) => {
   const toggle = () => {
     setIsCardOpen((prev) => !prev);
   };
+
+  for (let i = 0; i <= data.total_days!; i++) {
+    days.push("");
+  }
 
   return (
     <>
@@ -82,7 +87,11 @@ const WorkCard: React.FC<Props> = ({ data }) => {
                     },
                   }}
                 >
-                  <Calander />
+                  <Flex>
+                    {days.map((day, i) => (
+                      <Box key={i} bg="#ccc" w={4} h={4} mr={1}></Box>
+                    ))}
+                  </Flex>
                 </Box>
               )}
             </AnimatePresence>
