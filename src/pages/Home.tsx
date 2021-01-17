@@ -1,4 +1,5 @@
 import {
+  Box,
   Container,
   Grid,
   GridItem,
@@ -54,14 +55,14 @@ const Home = () => {
     <>
       <ErrorModal error={error} />
       <Container maxW="1200px">
-        <Grid mt={10} gap={{ base: 2, md: 6 }}>
+        <Grid mt={10} templateColumns="repeat(8,1fr)" gap={{ base: 2, md: 6 }}>
           <GridItem colSpan={8}>
             <UserProfile user={user} />
           </GridItem>
-          <GridItem colSpan={{ base: 8, md: 2 }}>
+          <GridItem colSpan={{ base: 8, md: 3 }}>
             <AddWorkForm addWorkHandler={addWorkHandler} />
           </GridItem>
-          <GridItem colSpan={{ base: 8, md: 6 }}>
+          <GridItem colSpan={{ base: 8, md: 5 }}>
             <Grid gap={{ base: 2, md: 4 }}>
               <AnimateSharedLayout>
                 <List as={motion.ul}>
