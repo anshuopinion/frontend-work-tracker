@@ -30,12 +30,6 @@ function App() {
       <ChakraProvider theme={theme}>
         <Router>
           <Switch>
-            <Route path="/" exact>
-              <Home />
-            </Route>{" "}
-            <Route path="/perdaywork" exact>
-              <PerDayWork />
-            </Route>
             {token === null && (
               <Route path="/login">
                 <Login />
@@ -46,6 +40,12 @@ function App() {
                 <Signup />
               </Route>
             )}
+            {token !== null && (
+              <Route path="/perdaywork">
+                <PerDayWork />
+              </Route>
+            )}
+            <Route exact path="/" component={Home} />
             <Redirect to="/" />
           </Switch>
         </Router>

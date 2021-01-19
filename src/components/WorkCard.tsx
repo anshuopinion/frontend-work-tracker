@@ -6,6 +6,7 @@ import {
   Heading,
   Spinner,
   Stack,
+  Tooltip,
 } from "@chakra-ui/react";
 import { faAngleDown } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -52,8 +53,17 @@ const WorkCard: React.FC<Props> = ({ data }) => {
     setIsCardOpen((prev) => !prev);
   };
 
-  for (let i = 0; i <= data.total_days!; i++) {
-    days.push("");
+  // * create array of dates
+  if (data.createdAt) {
+    const initialDate = new Date(data?.createdAt);
+    const yesterday = new Date(initialDate.setDate(initialDate.getDate() - 1));
+    for (let i = 0; i <= data.total_days!; i++) {
+      const day = new Date(
+        yesterday.setDate(yesterday.getDate() + 1)
+      ).toLocaleDateString();
+
+      days.push({ date: day });
+    }
   }
 
   return (
@@ -112,9 +122,11 @@ const WorkCard: React.FC<Props> = ({ data }) => {
                     gap="5px"
                   >
                     {/* FIX:layout delay in child element */}
-                    {days.map((_, i) => (
+                    {days.map((day, i) => (
                       <Link to="/perdaywork" key={i}>
-                        <Box bg="#ccc" w={4} h={4} mr={1}></Box>
+                        <Tooltip label={day.date} aria-label="A tooltip">
+                          <Box bg="#ccc" w={4} h={4} mr={1} />
+                        </Tooltip>
                       </Link>
                     ))}
                   </Grid>
