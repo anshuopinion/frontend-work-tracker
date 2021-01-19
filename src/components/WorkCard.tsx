@@ -2,6 +2,7 @@ import {
   Box,
   CloseButton,
   Flex,
+  Grid,
   Heading,
   Spinner,
   Stack,
@@ -15,13 +16,27 @@ import { Card } from "elements";
 import { AnimatePresence, motion } from "framer-motion";
 import React, { useState } from "react";
 import { useMutation, useQueryClient } from "react-query";
+import { Link } from "react-router-dom";
 import { IWork } from "Types";
-import Calander from "./ui/Calander";
+// import Calander from "./ui/Calander";
 import StyledProgress from "./ui/StyledProgress";
 
 interface Props {
   data: IWork;
 }
+
+const dropDownVariants = {
+  start: {
+    height: 0,
+  },
+  expand: { height: "auto" },
+  exit: {
+    height: 0,
+    transition: {
+      duration: 0.3,
+    },
+  },
+};
 
 const WorkCard: React.FC<Props> = ({ data }) => {
   const [isCardOpen, setIsCardOpen] = useState(false);
@@ -46,7 +61,13 @@ const WorkCard: React.FC<Props> = ({ data }) => {
       {/* {isLoading ? (
         <Spinner />
       ) : ( */}
-      <Card mb={2}>
+      <Card
+        as={motion.div}
+        initial="start"
+        animate="expand"
+        mb={2}
+        variants={dropDownVariants}
+      >
         <Stack>
           <Flex justifyContent="space-between">
             <Box width={7 / 8} onClick={toggle}>
@@ -73,25 +94,30 @@ const WorkCard: React.FC<Props> = ({ data }) => {
           </Flex>
 
           <Flex>
-            <AnimatePresence>
+            <AnimatePresence exitBeforeEnter>
               {isCardOpen && (
                 <Box
                   layout
                   as={motion.div}
-                  initial={{ height: 0 }}
-                  animate={{ height: "auto" }}
-                  exit={{
-                    height: 0,
-                    transition: {
-                      duration: 0.3,
-                    },
-                  }}
+                  initial="start"
+                  animate="expand"
+                  exit="exit"
                 >
-                  <Flex>
-                    {days.map((day, i) => (
-                      <Box key={i} bg="#ccc" w={4} h={4} mr={1}></Box>
+                  <Grid
+                    variants={dropDownVariants}
+                    as={motion.div}
+                    templateColumns="repeat(20,1fr)"
+                    // gridAutoColumns="repeat(50,1fr)"
+                    // gridAutoFlow="column"
+                    gap="5px"
+                  >
+                    {/* FIX:layout delay in child element */}
+                    {days.map((_, i) => (
+                      <Link to="/perdaywork" key={i}>
+                        <Box bg="#ccc" w={4} h={4} mr={1}></Box>
+                      </Link>
                     ))}
-                  </Flex>
+                  </Grid>
                 </Box>
               )}
             </AnimatePresence>

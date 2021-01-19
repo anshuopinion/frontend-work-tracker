@@ -15,6 +15,7 @@ import { QueryClient, QueryClientProvider } from "react-query";
 import { useEffect } from "react";
 import { useAuth } from "hooks/auth-hooks";
 import { useStateValue } from "store";
+import PerDayWork from "pages/PerDayWork";
 
 function App() {
   const [{ token }] = useStateValue();
@@ -31,6 +32,9 @@ function App() {
           <Switch>
             <Route path="/" exact>
               <Home />
+            </Route>{" "}
+            <Route path="/perdaywork" exact>
+              <PerDayWork />
             </Route>
             {token === null && (
               <Route path="/login">
