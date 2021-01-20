@@ -123,7 +123,12 @@ const WorkCard: React.FC<Props> = ({ data }) => {
                   >
                     {/* FIX:layout delay in child element */}
                     {days.map((day, i) => (
-                      <Link to="/perdaywork" key={i}>
+                      <Link
+                        to={`/perdaywork/${data.work_name
+                          .split(" ")
+                          .join("-")}/${day.date}`}
+                        key={i}
+                      >
                         <Tooltip label={day.date} aria-label="A tooltip">
                           <Box bg="#ccc" w={4} h={4} mr={1} />
                         </Tooltip>

@@ -41,7 +41,7 @@ function App() {
               </Route>
             )}
             {token !== null && (
-              <Route path="/perdaywork">
+              <Route path="/perdaywork/:workName/:date">
                 <PerDayWork />
               </Route>
             )}
