@@ -31,12 +31,12 @@ function App() {
         <Router>
           <Switch>
             {token === null && (
-              <Route path="/login">
+              <Route path="/login" exact>
                 <Login />
               </Route>
             )}
             {token === null && (
-              <Route path="/signup">
+              <Route path="/signup" exact>
                 <Signup />
               </Route>
             )}
@@ -46,7 +46,7 @@ function App() {
               </Route>
             )}
             <Route exact path="/" component={Home} />
-            <Redirect to="/" />
+            {/* <Redirect to="/" /> */}
           </Switch>
         </Router>
       </ChakraProvider>

@@ -28,7 +28,7 @@ export const useAuth = () => {
       value: null,
     });
     cookie.remove("jwt");
-    history.replace("/");
+    history.replace("/login");
   }, [dispatch, history]);
   const setCookieLogin = useCallback(() => {
     const jwt = cookie.get("jwt");

@@ -24,8 +24,10 @@ const Home = () => {
   const [{ userId, token }] = useStateValue();
   const history = useHistory();
   useEffect(() => {
-    if (!userId && !token) {
+    if (userId === null && token === null) {
       history.replace("/login");
+    } else {
+      history.replace("/");
     }
   }, [token, userId, history]);
 

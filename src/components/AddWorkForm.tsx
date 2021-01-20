@@ -71,7 +71,11 @@ const AddWorkForm: FC<Props> = ({ addWorkHandler }) => {
                   <FormLabel>Finsh Work Date:</FormLabel>
                   <InputControl
                     name="work_complete_date"
-                    inputProps={{ type: "date" }}
+                    inputProps={{
+                      type: "date",
+                      min: "2000/01/02",
+                      max: "2021/01/02",
+                    }}
                   />
                 </FormControl>
               </Stack>
